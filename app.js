@@ -61,6 +61,6 @@ app.get('/logout', (req, res) => {
   });
 
 
-app.listen(5555,() =>{
+app.listen(process.env.PORT || 5555,() =>{
     console.log("Server started on pORT 5555")
 }); 
