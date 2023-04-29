@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Landing Page</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    table {
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+  </style>
+
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">My Journals</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/home/journals">Journals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home/todolist">To-Do List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home/todolisteval">To-Do Eval</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home/todolistevalvisual">To-Do Eval Visual</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/home">Home</a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ user.username }}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/home/update_password_page">Reset Password</a>
+          {{!-- <a class="dropdown-item" href="#">About Us</a>
+          <a class="dropdown-item" href="#">Contact Us</a> --}}
+          <a class="dropdown-item" href="/logout">Log Out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1>Welcome to our website</span></h1>
+        <h2> {{ user.username }}</h2>
+
+      <p>We offer a variety of services to help you stay organized and productive. From journals to to-do lists, we've got you covered.</p>
+      </div>
+
+    </div>
+    <div class="row justify-content-center">
+      <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Journal Text</th>
+          {{!-- <th>Update</th> --}}
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+        <tr>
+          <td>{{this.date}}</td>
+          <td>{{this.journal_text}}</td>
+          {{!-- <td><a href="/update/{{this.id}}" >Update</a></td> --}}
+           <td>
+          <form method="POST" action="/delete/journal">
+            <input type="hidden" name="id" value="{{this.date}}">
+            <button type="submit">Delete</button>
+          </form>
+           </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row justify-content-center">
+      <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Priority 1</th>
+          <th>Priority 2</th>
+          <th>Priority 3</th>
+          {{!-- <th>Update</th> --}}
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data1}}
+        <tr>
+          <td>{{this.date}}</td>
+          <td>{{this.to_do1}}</td>
+          <td>{{this.to_do2}}</td>
+          <td>{{this.to_do3}}</td>
+          {{!-- <td><a href="/update/{{this.id}}">Update</a></td> --}}
+          <td>
+          <form method="POST" action="/delete/todolist">
+            <input type="hidden" name="id" value="{{this.date}}">
+            <button type="submit">Delete</button>
+          </form>
+           </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    </div>
+  </div>
+  
+
+   <!-- JavaScript -->
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <!-- Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

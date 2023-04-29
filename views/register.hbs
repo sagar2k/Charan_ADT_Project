@@ -1,0 +1,133 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Form</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+		}
+		.btn-blue-collar {
+			background-color: #1976D2;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">My Journals</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+      </ul>
+      {{!-- <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          John Doe
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Account Settings</a>
+          <a class="dropdown-item" href="#">About Us</a>
+          <a class="dropdown-item" href="#">Contact Us</a>
+          <a class="dropdown-item" href="#">Log Out</a>
+        </div>
+      </div> --}}
+    </div>
+  </nav>
+
+
+<div class="container">
+	<form action="/auth/register" method="POST">
+		<h2 class="text-center">Registration Form</h2>
+		<div class="form-group">
+			<label for="username">Username:</label>
+			<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
+		</div>
+		<div class="form-group">
+			<label for="email">Email address:</label>
+			<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+		</div>
+		<div class="form-group">
+			<label for="pwd">Password:</label>
+			<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+		</div>
+		<div class="form-group">
+			<label for="passwordConfirm">Re-type Password:</label>
+			<input type="password" class="form-control" id="passwordConfirm" placeholder="Re-enter password" name="passwordConfirm" required>
+		</div>
+		<button type="submit" class="btn btn-blue-collar btn-block" id="submit-btn">Submit</button>
+	</form>
+</div>
+<div>
+	{{#if message}}
+	<h4 class = "alert alret-danger mt-4 text-center">{{message}}</h4>
+
+{{/if}}
+</div>
+	
+
+	<script>
+		// $(document).ready(function(){
+		// 	$("form").submit(function(){
+		// 		alert("Registration successful!");
+		// 	});
+		//  });
+
+		// Get the submit button element
+    const submitButton = document.querySelector('#submit-btn');
+
+    // Add a click event listener to the submit button
+    submitButton.addEventListener('click', function() {
+      // Get the selected date value
+      const username = document.querySelector('#username').value;
+      const email = document.querySelector('#email').value;
+      const password = document.querySelector('#pswd').value;
+
+  
+      // Log the values to the console
+      console.log('Username:', username);
+      console.log('email', email);
+      console.log('pass:',password)
+    });
+	</script>
+
+</body>
+</html>
+
+
+
+
+{{!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1> Hello there, this is ME!!</h1>
+</body>
+</html> --}}
